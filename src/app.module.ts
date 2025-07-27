@@ -6,9 +6,11 @@ import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_FILTER, APP_GUARD } from '@nestjs/core';
+import { MongooseModule } from '@nestjs/mongoose';
 import { TerminusModule } from '@nestjs/terminus';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { SharedModule } from '@shared/shared.module';
+import { UsersModule } from '@users/users.module';
 import {
   AuthGuard,
   KeycloakConnectModule,
@@ -29,7 +31,14 @@ import { AppService } from './app.service';
     ConfigModule.forRoot({
       isGlobal: true,
       cache: true,
-      envFilePath: `.env.${process.env.NODE_ENV || 'local'}`,
+      envFilePath: '.env',
+    }),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        uri: `mongodb://${configService.get('MONGODB_HOST')}:${configService.get('MONGODB_PORT')}/${configService.get('MONGODB_NAME')}`,
+      }),
     }),
     ThrottlerModule.forRootAsync({
       imports: [ConfigModule],
@@ -71,6 +80,7 @@ import { AppService } from './app.service';
     TerminusModule,
     HttpModule,
     SharedModule,
+    UsersModule,
   ],
   controllers: [AppController, HealthController],
   providers: [

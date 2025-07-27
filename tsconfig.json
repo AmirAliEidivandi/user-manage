@@ -34,7 +34,8 @@
       "@exceptions/*": ["src/common/exceptions/*"],
       "@responses/*": ["src/common/responses/*"],
       "@interceptors/*": ["src/common/interceptors/*"],
-      "@pipes/*": ["src/common/pipes/*"]
+      "@pipes/*": ["src/common/pipes/*"],
+      "@users/*": ["src/v1/users/*"]
     }
   }
 }
