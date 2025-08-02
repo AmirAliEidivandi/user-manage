@@ -25,6 +25,7 @@ import {
 import * as path from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { KafkaModule } from '@services/kafka/kafka.module';
 
 @Module({
   imports: [
@@ -79,6 +80,7 @@ import { AppService } from './app.service';
     }),
     TerminusModule,
     HttpModule,
+    KafkaModule,
     SharedModule,
     UsersModule,
   ],

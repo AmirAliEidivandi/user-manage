@@ -22,9 +22,6 @@ export class UserEntity extends Document {
 
   @Prop({ type: String })
   nationalCode: string;
-
-  @Prop({ type: String })
-  requestId: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(UserEntity);

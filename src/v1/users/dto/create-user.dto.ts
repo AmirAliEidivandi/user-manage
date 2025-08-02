@@ -20,8 +20,4 @@ export class CreateUserDto {
   @IsString()
   @IsNotEmpty()
   nationalCode: string;
-
-  @IsString()
-  @IsNotEmpty()
-  requestId: string;
 }

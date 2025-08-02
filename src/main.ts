@@ -32,7 +32,7 @@ async function bootstrap() {
     transport: Transport.KAFKA,
     options: {
       client: {
-        clientId: KafkaServiceConstants.USER_CLIENT_ID,
+        clientId: KafkaServiceConstants.PROFILE_CLIENT_ID,
         brokers: [
           `${configService.get('KAFKA_HOST')}:${configService.get<string>(
             'KAFKA_PORT',
@@ -42,7 +42,7 @@ async function bootstrap() {
         logLevel: logLevel.NOTHING,
       },
       consumer: {
-        groupId: KafkaServiceConstants.USER_GROUP_ID,
+        groupId: KafkaServiceConstants.PROFILE_GROUP_ID,
         allowAutoTopicCreation: true,
       },
     },
