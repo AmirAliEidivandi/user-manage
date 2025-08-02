@@ -11,7 +11,21 @@ export class UsersController {
 
   @MessagePattern(KafkaServiceConstants.TOPICS.CREATE_PROFILE)
   async createProfile(@Payload() payload: string) {
-    console.log(payload);
     return this.usersService.createProfile(payload);
+  }
+
+  @MessagePattern(KafkaServiceConstants.TOPICS.GET_ALL_PROFILES)
+  async findAllProfile(@Payload() payload: string) {
+    return this.usersService.findAllProfile(payload);
+  }
+
+  @MessagePattern(KafkaServiceConstants.TOPICS.GET_PROFILE)
+  async findOneProfile(@Payload() payload: string) {
+    return this.usersService.findOneProfile(payload);
+  }
+
+  @MessagePattern(KafkaServiceConstants.TOPICS.UPDATE_PROFILE)
+  async updateProfile(@Payload() payload: string) {
+    return this.usersService.updateProfile(payload);
   }
 }

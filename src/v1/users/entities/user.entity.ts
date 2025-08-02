@@ -3,6 +3,7 @@ import { Document } from 'mongoose';
 
 @Schema({
   id: false,
+  timestamps: true,
 })
 export class UserEntity extends Document {
   @Prop({ type: String, required: true })
